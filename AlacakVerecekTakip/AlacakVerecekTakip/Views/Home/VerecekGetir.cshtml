@@ -1,0 +1,23 @@
+﻿@model AlacakVerecekTakip.Models.CariHesaplarTablosu
+@{
+    ViewData["Title"] = "VerecekGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("VerecekEkle", "Home", FormMethod.Post))
+{
+
+    <div style="display:none">
+        <b>ID</b>
+        @Html.TextBoxFor(x => x.ID, new { @required = "required", @class = "form-control", @placeholder = "0.00 TL" })
+    </div>
+    <div class="form-group mb-3">
+        <b>Verecek Ekle</b>
+        @Html.TextBoxFor(x => x.VerecekMiktar, new { @required = "required", @class = "form-control", @placeholder = "0.00 TL" })
+    </div>
+
+    <div class="form-group">
+        <button class="form-control btn btn-primary submit px-3">Verecek Ekle</button>
+    </div>
+
+}

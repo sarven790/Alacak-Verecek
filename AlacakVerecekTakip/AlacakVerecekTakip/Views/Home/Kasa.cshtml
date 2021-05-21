@@ -1,0 +1,45 @@
+﻿@using Microsoft.AspNetCore.Http;
+@using AlacakVerecekTakip.Models
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model X.PagedList.PagedList<KasaTablosu>
+@{
+    ViewData["Title"] = "Kasa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+
+    <br />
+
+    <table class="table table-hover">
+
+        <tr>
+            <th style="text-align:center">ID</th>
+            <th style="text-align:center">İşlem Türü</th>
+            <th style="text-align:center">Kişi Ad-Soyad</th>
+            <th style="text-align:center">Giriş Tutarı</th>
+            <th style="text-align:center">Çıkış Tutarı</th>
+            <th style="text-align:center">Bakiye</th>
+        </tr>
+
+        @foreach (var x in Model)
+        {
+            <tr>
+
+
+                <td>@x.ID</td>
+                <td>@x.IslemTuru</td>
+                <td>@x.KisiAdSoyad</td>
+                <td>@x.GirisTutari</td>
+                <td>@x.CikisTutari</td>
+                <td>@x.Bakiye</td>
+
+            </tr>
+        }
+
+    </table>
+
+</div> 
+@Html.PagedListPager((IPagedList)Model, s => Url.Action("Kasa", new { s }))
+

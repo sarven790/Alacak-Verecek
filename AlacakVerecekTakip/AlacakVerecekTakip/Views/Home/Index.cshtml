@@ -1,0 +1,53 @@
+﻿@using Microsoft.AspNetCore.Http;
+@using AlacakVerecekTakip.Models
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model X.PagedList.PagedList<CariHesaplarTablosu>
+@{
+    ViewData["Title"] = "Home Page";
+    string id = Context.Session.GetString("id");
+}
+
+<div class="text-center">
+
+    <br />
+
+    <table class="table table-hover">
+
+        <tr>
+            <th style="text-align:center">ID</th>
+            <th style="text-align:center">Ad</th>
+            <th style="text-align:center">Soyad</th>
+            <th style="text-align:center">Telefon</th>
+            <th style="text-align:center">Adres</th>
+            <th style="text-align:center">Alacak-Verecek</th>
+            <th style="text-align:center">Alacak Ekle</th>
+            <th style="text-align:center">Verecek Ekle</th>
+            <th style="text-align:center">Güncelle</th>
+        </tr>
+
+        @foreach (var x in Model)
+        {
+            <tr>
+
+
+                <td>@x.ID</td>
+                <td>@x.Ad</td>
+                <td>@x.Soyad</td>
+                <td>@x.Telefon</td>
+                <td>@x.Adres</td>
+                <td>@x.AlacakVerecek</td>
+                <td><a href="/Home/AlacakGetir/@x.ID" class="btn btn-success">Alacak Ekle</a></td>
+                <td><a href="/Home/VerecekGetir/@x.ID" class="btn btn-warning">Verecek Ekle</a></td>
+                <td><a href="/Home/GuncelleGetir/@x.ID" class="btn btn-info">Güncelle</a></td>
+
+
+            </tr>
+        }
+
+    </table>
+
+</div>
+@Html.PagedListPager((IPagedList)Model, s => Url.Action("Index", new { s }))
+
+<a href="~/Home/YeniCariEkle" class="btn btn-primary">Yeni Hesap Ekle</a>
